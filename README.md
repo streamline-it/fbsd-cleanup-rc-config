@@ -1,22 +1,36 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Organizes the /etc/rc.conf file.  Uses a template to populate an origanized rc.conf while also giving the option to back the file up.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+none
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+# defaults file for fbsd-cleanup-rc-config
+
+# path to rc config
+fbsd_cleanup_rc_config_rc_dest: /etc/rc.conf
+fbsd_cleanup_rc_config_rc_src: /etc/rc.conf
+
+# if true the rc.conf file will be backed up
+fbsd_cleanup_rc_config_backup_conf: true
+
+# used to define sections of the rc.conf
+fbsd_cleanup_rc_config_section_1: []
+fbsd_cleanup_rc_config_section_2: []
+fbsd_cleanup_rc_config_section_3: []
+fbsd_cleanup_rc_config_section_4: []
+fbsd_cleanup_rc_config_section_5: []
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+none
 
 Example Playbook
 ----------------
@@ -25,7 +39,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - fbsd_cleanup_rc_config
 
 License
 -------
@@ -35,4 +49,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Rich O'Hara

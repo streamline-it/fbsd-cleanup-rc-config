@@ -1,4 +1,8 @@
 ---
+# Call asserts
+- name: check for asserts
+  ansible.builtin.include_tasks: asserts.yml
+
 # tasks file for fbsd-cleanup-rc-config
 - name: read in the rc.conf file 
   register: my_file_contents
