@@ -72,6 +72,7 @@
     'defaultrouter=' not in item and
     '_flags=' not in item and
     'kld_load=' not in item and
+    '#' not in item and
     item | length > 0 
   ansible.builtin.set_fact:
     fbsd_cleanup_rc_config_section_5: "{{ fbsd_cleanup_rc_config_section_5 | default([]) + [item]  }}"
