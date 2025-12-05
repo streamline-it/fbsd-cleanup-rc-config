@@ -1,0 +1,80 @@
+---
+# tasks file for fbsd-cleanup-rc-config
+- name: read in the rc.conf file 
+  register: my_file_contents
+  ansible.builtin.slurp:
+    src: "{{ fbsd_cleanup_rc_config_rc_src }}" 
+
+- name: create variable from decoded content of the file
+  ansible.builtin.set_fact:
+    decoded_content: "{{ my_file_contents['content'] | b64decode | split('\n') }}"
+
+ #
+ # Hostname and basic networking section
+ #
+- name: parse content for section_1
+  loop:
+    "{{ decoded_content }}"
+  when: >
+    'ifconfig_' in item or
+    'hostname=' in item or
+    'default_router=' in item
+  ansible.builtin.set_fact:
+     section_1: "{{ section_1 | default([]) + [item]  }}"
+
+#
+# Services section
+#
+- name: parse content for section_2
+  loop:
+    "{{ decoded_content }}"
+  when: >
+    '_enable=' in item 
+  ansible.builtin.set_fact:
+    section_2: "{{ section_2 | default([]) + [item]  }}"
+
+#
+# Service flags section
+#
+- name: parse content for section_3
+  loop:
+    "{{ decoded_content }}"
+  when: >
+    '_flags=' in item 
+  ansible.builtin.set_fact:
+    section_3: "{{ section_3 | default([]) + [item]  }}"
+
+ #
+ # Driver load section
+ #
+- name: parse content for section_4
+  loop:
+    "{{ decoded_content }}"
+  when: >
+    'kld_load=' in item 
+  ansible.builtin.set_fact:
+    section_4: "{{ section_4 | default([]) + [item]  }}"
+
+#
+# Miscellaneous
+#
+- name: parse content for section_5
+  loop:
+    "{{ decoded_content }}"
+  when: >
+    'ifconfig_' not in item and
+    'hostname=' not in item and
+    '_enable=' not in item and
+    'default_router=' not in item and
+    '_flags=' not in item and
+    'kld_load=' not in item and
+    item | length > 0 
+  ansible.builtin.set_fact:
+    section_5: "{{ section_5 | default([]) + [item]  }}"
+
+- name: Write out the new rc.conf
+  ansible.builtin.template:
+    src: rc.conf.j2
+    dest: "{{ fbsd_cleanup_rc_config_rc_dest }}"
+    backup: "{{ fbsd_cleanup_rc_config_backup_conf }}"
+    force: true

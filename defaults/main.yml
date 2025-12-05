@@ -1,0 +1,16 @@
+---
+# defaults file for fbsd-cleanup-rc-config
+
+# path to rc config
+fbsd_cleanup_rc_config_rc_dest: /etc/rc.conf
+fbsd_cleanup_rc_config_rc_src: /etc/rc.conf
+
+# if true the rc.conf file will be backed up
+fbsd_cleanup_rc_config_backup_conf: true
+
+# used to define sections of the rc.conf
+fbsd_cleanup_rc_config_section_1: []
+fbsd_cleanup_rc_config_section_2: []
+fbsd_cleanup_rc_config_section_3: []
+fbsd_cleanup_rc_config_section_4: []
+fbsd_cleanup_rc_config_section_5: []

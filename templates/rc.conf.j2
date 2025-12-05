@@ -1,0 +1,45 @@
+#***********************************************************
+#*
+#*   Ansible Managed file
+#*
+#*   Any edits to the file will be replace by Ansible.
+#*
+#*   First Modified:
+#*   {{ ansible_managed }}
+#*
+#***********************************************************
+
+#   Host and Basic Network 
+
+{% for item in section_1 %}
+{{ item }}
+{% endfor %}
+
+
+#  Services 
+
+{% for item in section_2 %}
+{{ item }}
+{% endfor %}
+
+
+#  Service flags
+
+{% for item in section_3 %}
+{{ item }}
+{% endfor %}
+
+
+
+# Drivers
+
+{% for item in section_4 %}
+{{ item }}
+{% endfor %}
+
+
+# Misc 
+
+{% for item in section_5 %}
+{{ item }}
+{% endfor %}
