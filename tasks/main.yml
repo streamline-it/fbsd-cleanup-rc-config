@@ -22,9 +22,9 @@
   when: >
     'ifconfig_' in item or
     'hostname=' in item or
-    'default_router=' in item
+    'defaultrouter=' in item
   ansible.builtin.set_fact:
-     section_1: "{{ section_1 | default([]) + [item]  }}"
+     fbsd_cleanup_rc_config_section_1: "{{ fbsd_cleanup_rc_config_section_1 | default([]) + [item]  }}"
 
 #
 # Services section
@@ -35,7 +35,7 @@
   when: >
     '_enable=' in item 
   ansible.builtin.set_fact:
-    section_2: "{{ section_2 | default([]) + [item]  }}"
+    fbsd_cleanup_rc_config_section_2: "{{ fbsd_cleanup_rc_config_section_2 | default([]) + [item]  }}"
 
 #
 # Service flags section
@@ -46,7 +46,7 @@
   when: >
     '_flags=' in item 
   ansible.builtin.set_fact:
-    section_3: "{{ section_3 | default([]) + [item]  }}"
+    fbsd_cleanup_rc_config_section_3: "{{ fbsd_cleanup_rc_config_section_3 | default([]) + [item]  }}"
 
  #
  # Driver load section
@@ -57,7 +57,7 @@
   when: >
     'kld_load=' in item 
   ansible.builtin.set_fact:
-    section_4: "{{ section_4 | default([]) + [item]  }}"
+    fbsd_cleanup_rc_config_section_4: "{{ fbsd_cleanup_rc_config_section_4 | default([]) + [item]  }}"
 
 #
 # Miscellaneous
@@ -69,12 +69,12 @@
     'ifconfig_' not in item and
     'hostname=' not in item and
     '_enable=' not in item and
-    'default_router=' not in item and
+    'defaultrouter=' not in item and
     '_flags=' not in item and
     'kld_load=' not in item and
     item | length > 0 
   ansible.builtin.set_fact:
-    section_5: "{{ section_5 | default([]) + [item]  }}"
+    fbsd_cleanup_rc_config_section_5: "{{ fbsd_cleanup_rc_config_section_5 | default([]) + [item]  }}"
 
 - name: Write out the new rc.conf
   ansible.builtin.template:

@@ -14,3 +14,10 @@ fbsd_cleanup_rc_config_section_2: []
 fbsd_cleanup_rc_config_section_3: []
 fbsd_cleanup_rc_config_section_4: []
 fbsd_cleanup_rc_config_section_5: []
+
+# define variables for template
+my_section_1: []
+my_section_2: []
+my_section_3: []
+my_section_4: []
+my_section_5: []
