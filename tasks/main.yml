@@ -1,4 +1,5 @@
 ---
+
 # Call asserts
 - name: check for asserts
   ansible.builtin.include_tasks: asserts.yml
@@ -55,7 +56,8 @@
   loop:
     "{{ decoded_content }}"
   when: >
-    'kld_load=' in item 
+    'kld_load=' in item or
+    'kld_list=' in item
   ansible.builtin.set_fact:
     fbsd_cleanup_rc_config_section_4: "{{ fbsd_cleanup_rc_config_section_4 | default([]) + [item]  }}"
 
@@ -66,14 +68,15 @@
   loop:
     "{{ decoded_content }}"
   when: >
+    item | length > 0 and
     'ifconfig_' not in item and
     'hostname=' not in item and
     '_enable=' not in item and
     'defaultrouter=' not in item and
     '_flags=' not in item and
     'kld_load=' not in item and
-    '#' not in item and
-    item | length > 0 
+    'kld_list=' not in item and
+    item[0] != '#' not in item 
   ansible.builtin.set_fact:
     fbsd_cleanup_rc_config_section_5: "{{ fbsd_cleanup_rc_config_section_5 | default([]) + [item]  }}"
 
