@@ -6,7 +6,7 @@ Organizes the /etc/rc.conf file.  Uses a template to populate an origanized rc.c
 Requirements
 ------------
 
-none
+Compatible with RHEL7 - 9.  And with FreeBSD 13 - 15
 
 Role Variables
 --------------
@@ -37,9 +37,10 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
-      roles:
-         - fbsd_cleanup_rc_config
+- hosts: servers
+  
+  roles:
+    - fbsd_cleanup_rc_config
 
 License
 -------

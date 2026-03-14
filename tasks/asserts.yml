@@ -3,20 +3,20 @@
   ansible.builtin.assert:
     that:
       - fbsd_cleanup_rc_config_rc_dest is defined
+      - fbsd_cleanup_rc_config_rc_dest is truthy
       - fbsd_cleanup_rc_config_rc_src is defined
+      - fbsd_cleanup_rc_config_rc_src is truthy
       - fbsd_cleanup_rc_config_backup_conf is defined
+      - fbsd_cleanup_rc_config_backup_conf is truthy
       - fbsd_cleanup_rc_config_section_1 is defined
+      - fbsd_cleanup_rc_config_section_1 is truthy
       - fbsd_cleanup_rc_config_section_2 is defined
+      - fbsd_cleanup_rc_config_section_2 is truthy
       - fbsd_cleanup_rc_config_section_3 is defined
+      - fbsd_cleanup_rc_config_section_3 is truthy
       - fbsd_cleanup_rc_config_section_4 is defined
+      - fbsd_cleanup_rc_config_section_4 is truthy
       - fbsd_cleanup_rc_config_section_5 is defined
+      - fbsd_cleanup_rc_config_section_5 is truthy
     fail_msg: >
-      "Make sure the following variables are defined:
-      fbsd_cleanup_rc_config_rc_dest is defined
-      fbsd_cleanup_rc_config_rc_src is defined
-      fbsd_cleanup_rc_config_backup_conf is defined
-      fbsd_cleanup_rc_config_section_1 is defined
-      fbsd_cleanup_rc_config_section_2 is defined
-      fbsd_cleanup_rc_config_section_3 is defined
-      fbsd_cleanup_rc_config_section_4 is defined
-      fbsd_cleanup_rc_config_section_5 is defined"
+      "Make sure the variables are defined and hs values"
