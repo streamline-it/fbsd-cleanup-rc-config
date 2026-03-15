@@ -39,6 +39,10 @@ Including an example of how to use your role (for instance, with variables passe
 
 - hosts: servers
   
+  vars:
+
+    fbsd_cleanup_rc_config_backup_conf: false 
+
   roles:
     - fbsd_cleanup_rc_config
 

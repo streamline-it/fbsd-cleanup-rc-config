@@ -1,4 +1,12 @@
 ---
+- name: ensure backup rc conf is set and defined correctly
+  ansible.builtin.assert:
+    that: 
+      - fbsd_cleanup_rc_config_backup_conf is defined 
+      - fbsd_cleanup_rc_config_backup_conf == true or fbsd_cleanup_rc_config_backup_conf == false
+    fail_msg:
+      "Ensure backup variable is defined and value is set correctly"
+
 - name: ensure needed variables are defined
   ansible.builtin.assert:
     that:
@@ -6,17 +14,10 @@
       - fbsd_cleanup_rc_config_rc_dest is truthy
       - fbsd_cleanup_rc_config_rc_src is defined
       - fbsd_cleanup_rc_config_rc_src is truthy
-      - fbsd_cleanup_rc_config_backup_conf is defined
-      - fbsd_cleanup_rc_config_backup_conf is truthy
       - fbsd_cleanup_rc_config_section_1 is defined
-      - fbsd_cleanup_rc_config_section_1 is truthy
       - fbsd_cleanup_rc_config_section_2 is defined
-      - fbsd_cleanup_rc_config_section_2 is truthy
       - fbsd_cleanup_rc_config_section_3 is defined
-      - fbsd_cleanup_rc_config_section_3 is truthy
       - fbsd_cleanup_rc_config_section_4 is defined
-      - fbsd_cleanup_rc_config_section_4 is truthy
       - fbsd_cleanup_rc_config_section_5 is defined
-      - fbsd_cleanup_rc_config_section_5 is truthy
     fail_msg: >
       "Make sure the variables are defined and hs values"
