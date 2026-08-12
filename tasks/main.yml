@@ -1,5 +1,4 @@
 ---
-
 # Call asserts
 - name: check for asserts
   ansible.builtin.include_tasks: asserts.yml
@@ -24,6 +23,8 @@
     'ifconfig_' in item or
     'hostname=' in item or
     'defaultrouter=' in item
+    'wlans_' in item
+    'cloned_interfaces' in item
   ansible.builtin.set_fact:
      fbsd_cleanup_rc_config_section_1: "{{ fbsd_cleanup_rc_config_section_1 | default([]) + [item]  }}"
 
