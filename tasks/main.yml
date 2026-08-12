@@ -22,8 +22,8 @@
   when: >
     'ifconfig_' in item or
     'hostname=' in item or
-    'defaultrouter=' in item
-    'wlans_' in item
+    'defaultrouter=' in item or
+    'wlans_' in item or
     'cloned_interfaces' in item
   ansible.builtin.set_fact:
      fbsd_cleanup_rc_config_section_1: "{{ fbsd_cleanup_rc_config_section_1 | default([]) + [item]  }}"
@@ -77,6 +77,8 @@
     '_flags=' not in item and
     'kld_load=' not in item and
     'kld_list=' not in item and
+    'wlans_' not in item and
+    'cloned_interfaces' not in item and
     item[0] != '#' not in item 
   ansible.builtin.set_fact:
     fbsd_cleanup_rc_config_section_5: "{{ fbsd_cleanup_rc_config_section_5 | default([]) + [item]  }}"
